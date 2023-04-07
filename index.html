@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Analog Clock App</title>
+    <style>
+        /* CSS styles for the analog clock */
+        .clock {
+            margin: 40vh auto;
+            width: 200px;
+            height: 200px;
+            border: 5px solid #333;
+            border-radius: 50%;
+            position: relative;
+            transform: rotate(360deg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #343;
+            box-shadow: 0 0 10px white;
+            /* Box shadow with horizontal and vertical offsets of 0, blur radius of
+                  10px, and black color */
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="clock" id="clock">
+        <span id="hourText"></span> <br>
+        <span id="minuteText"></span> <br>
+        <span id="secondText"></span>
+    </div>
+
+    <script>
+        // JavaScript code for updating the clock
+        function updateClock() {
+            const now = new Date();
+            let seconds = now.getSeconds();
+            let minutes = now.getMinutes();
+            let hours = now.getHours();
+            const hourText = document.getElementById('hourText');
+            const minuteText = document.getElementById('minuteText');
+            const secondText = document.getElementById('secondText');
+            const amPm = hours >= 12 ? 'PM' : 'AM'; // Check if hours is greater than or equal to 12
+            hours = hours % 12 || 12; // Convert to 12-hour format
+            hourText.textContent = String(hours).padStart(2, '0');
+            minuteText.textContent = String(minutes).padStart(2, '0');
+            secondText.textContent = String(seconds).padStart(2, '0');
+            document.getElementById('amPm').textContent = amPm; // Display AM/PM
+        }
+
+        // Update the clock every second
+        setInterval(updateClock, 1000);
+
+        // Initial update of the clock on page load
+        updateClock()
+    </script>
+</body>
+
+</html>
